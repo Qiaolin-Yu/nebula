@@ -14,15 +14,10 @@
 #  HDFS_LIBRARY          The HDFS library.
 
 
-link_directories($ENV{JAVA_HOME}/jre/lib/amd64/server)
-link_directories($ENV{HADOOP_HOME}/lib/native)
-link_libraries($ENV{JAVA_HOME}/jre/lib/amd64)
-find_path(HDFS_INCLUDE_DIR NAMES hdfs.h PATHS $HADOOP_HOME/include)
-find_library(HDFS_LIBRARY NAMES libhdfs.a PATHS $HADOOP_HOME/lib/native)
-list(APPEND HDFS_LIBRARY dl)
-list(APPEND HDFS_LIBRARY verify)
-list(APPEND HDFS_LIBRARY java)
-list(APPEND HDFS_LIBRARY jvm)
+find_path(HDFS_INCLUDE_DIR NAMES hdfs.h PATHS $ENV{HADOOP_HOME}/include/hdfs)
+find_library(HDFS_LIBRARY NAMES libhdfs.a PATHS $ENV{HADOOP_HOME}/lib/native)
+
+message("HDFS_LIBRARY: ${HDFS_LIBRARY}")
 
 if (HDFS_INCLUDE_DIR AND HDFS_LIBRARY)
     set(HDFS_FOUND TRUE)
@@ -30,7 +25,6 @@ if (HDFS_INCLUDE_DIR AND HDFS_LIBRARY)
             HDFS_INCLUDE_DIR
             HDFS_LIBRARY
     )
-    message(${HDFS_LIBRARY})
 endif ()
 
 if (NOT HDFS_FOUND)

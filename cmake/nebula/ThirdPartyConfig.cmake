@@ -105,6 +105,7 @@ endif()
 find_package(Libevent REQUIRED)
 find_package(Proxygen REQUIRED)
 find_package(Rocksdb REQUIRED)
+find_package(HDFS REQUIRED)
 find_package(Snappy REQUIRED)
 find_package(Wangle REQUIRED)
 find_package(ZLIB REQUIRED)
@@ -142,6 +143,18 @@ set(THRIFT_LIBRARIES
     sodium
 )
 
+link_directories($ENV{JAVA_HOME}/jre/lib/amd64/server)
+link_directories($ENV{HADOOP_HOME}/lib/native)
+link_libraries($ENV{JAVA_HOME}/jre/lib/amd64)
+
+set(HDFS_LIBRARIES
+    ${HDFS_LIBRARY}
+    dl
+    verify
+    jvm
+    java
+)
+
 set(PROXYGEN_LIBRARIES
     proxygenhttpserver
     proxygen
@@ -150,7 +163,7 @@ set(PROXYGEN_LIBRARIES
     sodium
 )
 
-set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY} ${HDFS_LIBRARY})
+set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY} ${HDFS_LIBRARIES})
 
 # All compression libraries
 set(COMPRESSION_LIBRARIES bz2 snappy zstd z lz4)
