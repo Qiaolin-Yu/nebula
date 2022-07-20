@@ -14,7 +14,7 @@
 #  HDFS_LIBRARY          The HDFS library.
 
 
-find_path(HDFS_INCLUDE_DIR NAMES hdfs.h PATHS $ENV{HADOOP_HOME}/include/hdfs)
+find_path(HDFS_INCLUDE_DIR NAMES hdfs.h PATHS $ENV{HADOOP_HOME}/include)
 find_library(HDFS_LIBRARY NAMES libhdfs.a PATHS $ENV{HADOOP_HOME}/lib/native)
 
 message("HDFS_LIBRARY: ${HDFS_LIBRARY}")
