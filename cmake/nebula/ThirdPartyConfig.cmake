@@ -150,7 +150,7 @@ set(PROXYGEN_LIBRARIES
     sodium
 )
 
-set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY})
+set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY} ${HDFS_LIBRARY})
 
 # All compression libraries
 set(COMPRESSION_LIBRARIES bz2 snappy zstd z lz4)
