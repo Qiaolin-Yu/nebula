@@ -14,16 +14,45 @@
 #  HDFS_LIBRARY          The HDFS library.
 
 
-find_path(HDFS_INCLUDE_DIR NAMES hdfs.h PATHS $ENV{HADOOP_HOME}/include)
-find_library(HDFS_LIBRARY NAMES libhdfs.a PATHS $ENV{HADOOP_HOME}/lib/native)
+set(HDFS_INCLUDE_DIR
+        "$ENV{JAVA_HOME}/include"
+        "$ENV{JAVA_HOME}/include/linux"
+        "$ENV{HADOOP_HOME}/include")
 
-message("HDFS_LIBRARY: ${HDFS_LIBRARY}")
+find_library(HDFS_LIBRARY NAMES hdfs PATHS
+        "$ENV{JAVA_HOME}/jre/lib/amd64/server"
+        "$ENV{JAVA_HOME}/jre/lib/amd64"
+        "$ENV{HADOOP_HOME}/lib/native")
 
-if (HDFS_INCLUDE_DIR AND HDFS_LIBRARY)
+find_library(DL_LIBRARY NAMES dl PATHS
+        "$ENV{JAVA_HOME}/jre/lib/amd64/server"
+        "$ENV{JAVA_HOME}/jre/lib/amd64"
+        "$ENV{HADOOP_HOME}/lib/native")
+
+find_library(verify_LIBRARY NAMES verify PATHS
+        "$ENV{JAVA_HOME}/jre/lib/amd64/server"
+        "$ENV{JAVA_HOME}/jre/lib/amd64"
+        "$ENV{HADOOP_HOME}/lib/native")
+
+find_library(java_LIBRARY NAMES java PATHS
+        "$ENV{JAVA_HOME}/jre/lib/amd64/server"
+        "$ENV{JAVA_HOME}/jre/lib/amd64"
+        "$ENV{HADOOP_HOME}/lib/native")
+
+find_library(jvm_LIBRARY NAMES jvm PATHS
+        "$ENV{JAVA_HOME}/jre/lib/amd64/server"
+        "$ENV{JAVA_HOME}/jre/lib/amd64"
+        "$ENV{HADOOP_HOME}/lib/native")
+
+set(HDFS_LIBRARIES ${HDFS_LIBRARY} ${DL_LIBRARY} ${verify_LIBRARY} ${java_LIBRARY} ${jvm_LIBRARY})
+
+message("HDFS_LIBRARIES: ${HDFS_LIBRARIES}")
+
+if (HDFS_INCLUDE_DIR AND HDFS_LIBRARIES)
     set(HDFS_FOUND TRUE)
     mark_as_advanced(
             HDFS_INCLUDE_DIR
-            HDFS_LIBRARY
+            HDFS_LIBRARIES
     )
 endif ()
 

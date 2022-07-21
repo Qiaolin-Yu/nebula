@@ -147,13 +147,6 @@ link_directories($ENV{JAVA_HOME}/jre/lib/amd64/server)
 link_directories($ENV{HADOOP_HOME}/lib/native)
 link_libraries($ENV{JAVA_HOME}/jre/lib/amd64)
 
-set(HDFS_LIBRARIES
-    ${HDFS_LIBRARY}
-    dl
-    verify
-    jvm
-    java
-)
 
 set(PROXYGEN_LIBRARIES
     proxygenhttpserver
