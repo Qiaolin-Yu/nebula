@@ -163,7 +163,7 @@ set(HDFS_LIBRARIES
     java
     jvm
 )
-
+include_directories(${Rocksdb_INCLUDE_DIR})
 set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY} ${HDFS_LIBRARIES})
 
 # All compression libraries
