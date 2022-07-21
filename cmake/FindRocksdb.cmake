@@ -13,8 +13,8 @@
 #  Rocksdb_INCLUDE_DIR      The Rocksdb includes directories.
 #  Rocksdb_LIBRARY          The Rocksdb library.
 
-find_path(Rocksdb_INCLUDE_DIR NAMES rocksdb)
-find_library(Rocksdb_LIBRARY NAMES librocksdb.a)
+set(Rocksdb_INCLUDE_DIR $ENV{ROCKSDB_REPO}/include/rocksdb)
+set(Rocksdb_LIBRARY $ENV{ROCKSDB_REPO}/build/librocksdb.a)
 
 if(Rocksdb_INCLUDE_DIR AND Rocksdb_LIBRARY)
     set(Rocksdb_FOUND TRUE)
