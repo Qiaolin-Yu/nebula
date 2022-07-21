@@ -142,6 +142,8 @@ set(THRIFT_LIBRARIES
     sodium
 )
 
+
+
 set(PROXYGEN_LIBRARIES
     proxygenhttpserver
     proxygen
@@ -150,7 +152,19 @@ set(PROXYGEN_LIBRARIES
     sodium
 )
 
-set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY})
+link_directories($ENV{JAVA_HOME}/jre/lib/amd64/server)
+link_directories($ENV{HADOOP_HOME}/lib/native)
+link_directories($ENV{JAVA_HOME}/jre/lib/amd64)
+
+set(HDFS_LIBRARIES
+    hdfs
+    dl
+    verify
+    java
+    jvm
+)
+include_directories(${Rocksdb_INCLUDE_DIR})
+set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY} ${HDFS_LIBRARIES})
 
 # All compression libraries
 set(COMPRESSION_LIBRARIES bz2 snappy zstd z lz4)
