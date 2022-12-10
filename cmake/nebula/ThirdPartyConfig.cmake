@@ -164,7 +164,7 @@ set(HDFS_LIBRARIES
     jvm
 )
 include_directories(${Rocksdb_INCLUDE_DIR})
-include(${PROJECT_SOURCE_DIR}/cmake/modules/grpc.cmake)
+include(grpc.cmake)
 set(ROCKSDB_LIBRARIES
         ${Rocksdb_LIBRARY}
         ${HDFS_LIBRARIES}
