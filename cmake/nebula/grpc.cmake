@@ -29,9 +29,10 @@ endif()
 
 find_package(Threads REQUIRED)
 
-set(GRPC_AS_SUBMODULE)
+set(GRPC_AS_SUBMODULE ON)
 
 if(GRPC_AS_SUBMODULE)
+    message(STATUS "gRPC as submodule")
     # One way to build a projects that uses gRPC is to just include the
     # entire gRPC project tree via "add_subdirectory".
     # This approach is very simple to use, but the are some potential
