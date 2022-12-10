@@ -52,6 +52,7 @@ include(GitHooksConfig)
 include(GitInfoConfig)
 include(NebulaCustomTargets)
 include(IncludeWhatYouUse)
+include(grpc)
 include(TimeTrace)
 
 add_custom_target(
