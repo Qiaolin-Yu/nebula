@@ -164,7 +164,13 @@ set(HDFS_LIBRARIES
     jvm
 )
 include_directories(${Rocksdb_INCLUDE_DIR})
-set(ROCKSDB_LIBRARIES ${Rocksdb_LIBRARY} ${HDFS_LIBRARIES})
+include(${PROJECT_SOURCE_DIR}/cmake/modules/grpc.cmake)
+set(ROCKSDB_LIBRARIES
+        ${Rocksdb_LIBRARY}
+        ${HDFS_LIBRARIES}
+        ${_REFLECTION}
+        ${_GRPC_GRPCPP}
+        ${_PROTOBUF_LIBPROTOBUF})
 
 # All compression libraries
 set(COMPRESSION_LIBRARIES bz2 snappy zstd z lz4)
